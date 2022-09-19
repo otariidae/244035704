@@ -1,5 +1,7 @@
 runtime: ruby27
 entrypoint: bundle exec rails server -e production -p $PORT
+env_variables:
+  SECRET_KEY_BASE:
 instance_class: F1
 automatic_scaling:
   min_instances: 0
