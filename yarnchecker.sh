@@ -8,6 +8,5 @@ curl --silent "https://us.gcr.io/v2/gae-runtimes/buildpacks/tags/list" | jq -r '
 	curl --silent "https://us.gcr.io/v2/gae-runtimes/buildpacks/$runtime/builder/tags/list" | jq ".manifest[] | select((.timeUploadedMs | tonumber) > $july15th) | .tag[]" | jq -s "sort_by(.)" | jq -r ".[]" | while read -r tag; do
 		echo "$image_name:$tag"
 		docker run --rm "$image_name:$tag" yarn --version
-		sleep 1
 	done
 done
